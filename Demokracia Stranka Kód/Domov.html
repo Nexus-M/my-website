@@ -1,0 +1,227 @@
+<!DOCTYPE html>
+<html lang="sk">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width,initial-scale=1">
+    <link rel="stylesheet" href="Demokracia.css">
+    <title>Demokracia Stranka</title>
+</head>
+
+<body>
+
+    <header class="site-header">
+  <div class="header-inner">
+    <a href="#home" class="brand">
+      <div class="brand-logo"></div>
+      <div class="brand-text">
+        <span class="brand-title">Demokracia „po našom“</span>
+        <span class="brand-subtitle">Úprimnosť · Dialóg · Odvaha</span>
+      </div>
+    </a>
+
+    <nav class="main-nav">
+      <ul>
+        <li><a class="nav-link" href="#home">Domov</a></li>
+        <li><a class="nav-link" href="#gallery">O nás</a></li>
+        <li><a class="nav-link" href="#gallery">Projekty</a></li>
+        <li><a class="nav-link" href="https://docs.google.com/forms/d/1DzsrkhLAvxKjZW0mG4g6REvLkVIiXg8-BABZ3C34x2A/edit?usp=drivesdk">Kontakt</a></li>
+      </ul>
+    </nav>
+
+    <a href="https://docs.google.com/forms/d/1DzsrkhLAvxKjZW0mG4g6REvLkVIiXg8-BABZ3C34x2A/edit?usp=drivesdk" class="nav-cta">Pridať sa</a>
+
+    <!-- hamburger -->
+    <button class="menu-toggle" type="button" aria-label="Menu" onclick="toggleMenu()">
+      <span></span>
+      <span></span>
+      <span></span>
+    </button>
+  </div>
+</header>
+
+
+
+   <section id="home" class="content-section hero-section">
+  <div class="text-box">
+    <h2>Demokracia po „našom“</h2>
+    <p>
+      Hovoríme o demokracii úprimne, kriticky a po našom – tak, ako ju žijú mladí ľudia.
+      Nie ako teóriu, ale ako realitu. Pretože demokracia nie je len politický systém.
+      Je to spôsob, ako sa rozprávame, ako počúvame a ako sa snažíme zlepšiť svet okolo nás.
+    </p>
+    <p> Toto je Demokracia „po našom“.</p>
+  </div>
+
+
+  <div class="image-box hero-image">
+    <img src="Images/Natacanie.jpg" alt="Demokracia" />
+  </div>
+</section>
+
+
+    <section id="gallery" class="gallery">
+        <div class="gallery-item" onclick="openOverlay(1)">
+            <h3>Daniel Dvorský - Predseda</h3>
+            <img src="Images/pic1.jpeg" alt="Obrázok 1">
+            <p>Rozhodnosť - Rovnováha - Dialóg</p>
+        </div>
+        <div class="gallery-item" onclick="openOverlay(2)">
+            <h3>Samuel Kolník - Podpredseda </h3>
+            <img src="Images/pic2.jpeg" alt="Obrázok 2">
+            <p>Zvedavosť - angažovanosť - autentickosť</p>
+        </div>
+        <div class="gallery-item" onclick="openOverlay(3)">
+            <h3>Izabela Gubala - Podpredseda</h3>
+            <img src="Images/pic4.jpeg" alt="Obrázok 4">
+            <p>spravodlivosť - kreativita - pracovitosť</p>
+        </div>
+         <div class="gallery-item" onclick="openOverlay(4)">
+            <h3>Viktória Schedlingová - Predseda VZ</h3>
+            <img src="Images/pic3.jpg" alt="Obrázok 3">
+            <p>Spravodlivosť - sloboda - rovnoprávnosť</p>
+        </div>
+        <div class="gallery-item" onclick="openOverlay(5)">
+            <h3>Katarína Luckaničová </h3>
+            <img src="Images/pic6.jpg" alt="Obrázok 6">
+            <p>Jeden cieľ, spoločná cesta.</p>
+        </div>
+        <div class="gallery-item" onclick="openOverlay(6)">
+            <h3>Matej Polák</h3>
+            <img src="Images/pic5.jpg" alt="Obrázok 5">
+            <p>Sebaúcta - motivácia - budúcnosť</p>
+        </div>
+        <div class="gallery-item " onclick="openOverlay(7)">
+            <h3>Nela Konopková</h3>
+            <img src="Images/pic7.jpg" alt="Obrázok 7">
+            <p>Cieľavedomosť- otvorenosť- empatia</p>
+        </div>
+         <div class="gallery-item " onclick="openOverlay(8)">
+            <h3>Samuel Huta - Kontrolór</h3>
+            <img src="Images/pic8.jpg" alt="Obrázok 8">
+            <p>Spolu sme silnejší.</p>
+        </div>
+     <div class="gallery-item " onclick="openOverlay(9)">
+            <h3>Lukáš Chalás</h3>
+            <img src="Images/pic9.jpg" alt="Obrázok 9">
+            <p>spoločenskosť - sebavedomosť - empatia</p>
+        </div>
+    
+    
+    </section>
+
+    <!-- Overlay -->
+    <div id="overlay" class="overlay" aria-hidden="true">
+        <button class="close-btn" aria-label="Zavrieť" onclick="closeOverlay()">&times;</button>
+
+        <!-- Toto bude vždy centrované podľa obrazovky -->
+        <div class="overlay-inner" role="dialog" aria-modal="true" aria-labelledby="overlay-text">
+            <img id="overlay-img" src="" alt="">
+            <p id="overlay-text"></p>
+        </div>
+    </div>
+
+    <div>
+        <footer class="site-footer">
+            <div class="footer-inner">
+                <p>&copy; 2025 Demokracia „po našom“. Všetky práva vyhradené.</p>
+            </div>
+        </footer>
+    </div>
+
+    <script>
+        const imageTexts = {
+            1: "Politika není pre mňa o táboroch, ale o schopnosti viesť dialóg. Som radikálny centrista, ktorý verí, že medzi extrémami sa dá nájsť priestor pre rozum, rešpekt a fakty.",
+            2: "Podľa mňa je autentickosť a úprimnosť to, čo mladí oceňujú vo verejnom priestore. Moderujem verejné diskusie a tlmočím rovesníkom analýzy expertov do našej reči. Treba im vysvetliť veci tak ako sú, na základe faktov, tak aby ich pochopil aj ten, čo sa o politiku vôbec nezaujíma.",
+            3: "Verím, že v politike by mali byť ľudia, ktorí naozaj svoju funkciu vykonávajú ,Podľa svojho najlepšieho a vedomia a svedomia. Rozprávajme sa prosím aj s ľuďmi opačných názorov!",
+            4: "Som cieľavedome orientovaná na prax – verím, že skutočná hodnota vedomostí je v ich aplikovaní do reálneho sveta a konštruktívnej zmene. V politickom spektre sa profilujem ako centristka, ktorá hľadá rozumné, vyvážené a funkčné riešenia pre celú spoločnosť.",
+            5: "Politika sa ťa dotýka, aj keď ty sa politiky dotýkať nechceš.",
+            6: "",
+            7: "Som pokojná, empatická a cieľavedomá. Rada počúvam názory iných, premýšľam nad nimi a hľadám rovnováhu medzi rôznymi pohľadmi. Pre mňa je Demokracia “po našom” miestom, kde sa mladí ľudia učia chápať svet okolo seba a kde ich hlas naozaj niečo znamená.",
+            8:"",
+            9:"Myslím si že najdôležitejšia vec vo svete je úprimnosť. Politika nám nemôže dať nič dobré keby nám len klame do tváre, musíme byť voči sebe priamy a povedať si ako na tom spoločnosť naozaj je."
+        };
+
+        function openOverlay(index) {
+            const overlay = document.getElementById('overlay');
+            const overlayImg = document.getElementById('overlay-img');
+            const overlayText = document.getElementById('overlay-text');
+
+            const items = document.querySelectorAll('.gallery-item');
+            const item = items[index - 1];
+            if (!item) return;
+
+            const imgEl = item.querySelector('img');
+            if (!imgEl) return;
+
+            const src = imgEl.getAttribute('src');
+            const alt = imgEl.getAttribute('alt') || '';
+
+            overlayImg.src = src;
+            overlayImg.alt = alt;
+            overlayText.textContent = imageTexts[index] || alt;
+
+            overlay.classList.add('show');
+            overlay.setAttribute('aria-hidden', 'false');
+
+            document.body.style.overflow = 'hidden';
+
+            // nech overlay-inner začne odhora, ale zostáva centrovaný
+            window.requestAnimationFrame(() => {
+                const inner = document.querySelector('.overlay-inner');
+                if (inner) inner.scrollTop = 0;
+            });
+        }
+
+        function closeOverlay() {
+            const overlay = document.getElementById('overlay');
+            const overlayImg = document.getElementById('overlay-img');
+
+            overlay.classList.remove('show');
+            overlay.setAttribute('aria-hidden', 'true');
+            document.body.style.overflow = '';
+            overlayImg.src = '';
+        }
+
+        // zavretie kliknutím mimo obsahu
+        document.addEventListener('click', (e) => {
+            const overlay = document.getElementById('overlay');
+            if (!overlay || !overlay.classList.contains('show')) return;
+            if (e.target === overlay) {
+                closeOverlay();
+            }
+        });
+
+        // ESC zavrie overlay
+        document.addEventListener('keydown', (e) => {
+            if (e.key === 'Escape') {
+                const overlay = document.getElementById('overlay');
+                if (overlay && overlay.classList.contains('show')) {
+                    closeOverlay();
+                }
+            }
+        });
+
+        // klávesnica – Enter/Space otvorí overlay
+        document.querySelectorAll('.gallery-item').forEach((el, i) => {
+            el.style.cursor = 'pointer';
+            el.setAttribute('role', 'button');
+            el.setAttribute('tabindex', '0');
+            el.addEventListener('keydown', (ev) => {
+                if (ev.key === 'Enter' || ev.key === ' ') {
+                    ev.preventDefault();
+                    openOverlay(i + 1);
+                }
+            });
+        });
+
+       function toggleMenu() {
+  const header = document.querySelector('.site-header');
+  header.classList.toggle('nav-open');
+}
+
+
+    </script>
+</body>
+
+</html>

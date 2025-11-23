@@ -1,0 +1,660 @@
+@font-face {
+  font-family: MainFont;
+  src: url('./SourceSans3-VariableFont_wght.ttf') format('truetype');
+}
+
+:root {
+  --overlay-bg: rgba(0, 0, 0, 0.95);
+  --accent: rgb(255, 60, 60);
+}
+
+/* RESET / BASE */
+* {
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+  font-family: MainFont, system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+  background-image: url("./Images/Pozadie\ 2\ Version.jpg"); /* skontroluj názov súboru */
+  background-size: cover;
+  background-repeat: no-repeat;
+  background-attachment: fixed;
+  background-position: center center;
+  color: white;
+}
+
+body::before {
+  content: "";
+  position: fixed;
+  inset: 0;
+  background-color: rgba(0, 0, 0, 0.45);
+  z-index: -1;
+}
+
+/* všetky obrázky bez rámikov */
+img {
+  border: none;
+  outline: none;
+  display: block;
+  flex: 10px 0 auto 30px;
+}
+
+/* HEADER */
+.site-header {
+  position: sticky;        /* drží sa hore pri scrollovaní */
+  top: 0;
+  z-index: 50;
+  padding: 10px 0;
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
+  background: linear-gradient(
+    to bottom,
+    rgba(0, 0, 0, 0.65),
+    rgba(0, 0, 0, 0.35)
+  );
+  border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+}
+
+.header-inner {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 6px 24px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 24px;
+}
+
+/* brand (logo + text) */
+.brand {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  text-decoration: none;
+  color: #fff;
+}
+
+.brand-logo {
+  width: 44px;
+  height: 44px;
+  border-radius: 14px;
+  background-image: url("Images/Copy of dpn logo profilovka – kópia.png");
+  background-size: cover;
+  background-position: center;
+  box-shadow: 0 0 0 1px rgba(255, 255, 255, 0.09),
+              0 10px 25px rgba(0, 0, 0, 0.7);
+}
+
+.brand-text {
+  display: flex;
+  flex-direction: column;
+  line-height: 1.2;
+}
+
+.brand-title {
+  font-size: 18px;
+  font-weight: 750;
+  letter-spacing: 0.03em;
+}
+
+.brand-subtitle {
+  font-size: 12px;
+  opacity: 0.75;
+}
+
+/* hlavná navigácia */
+.main-nav ul {
+  display: flex;
+  gap: 20px;
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+
+.nav-link {
+  position: relative;
+  font-size: 15px;
+  text-decoration: none;
+  color: #f5f5f5;
+  padding: 6px 2px;
+  transition: color 0.2s ease;
+}
+
+/* spodná čiarka pri hoveri */
+.nav-link::after {
+  content: "";
+  position: absolute;
+  left: 0;
+  bottom: -3px;
+  width: 0;
+  height: 2px;
+  border-radius: 999px;
+  background: linear-gradient(90deg, #ff4a4a, #ffb347);
+  transition: width 0.2s ease;
+}
+
+.nav-link:hover {
+  color: #ffffff;
+}
+
+.nav-link:hover::after {
+  width: 100%;
+}
+
+/* CTA tlačidlo vpravo */
+.nav-cta {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  padding: 8px 16px;
+  border-radius: 999px;
+  border: 1px solid rgba(255, 255, 255, 0.18);
+  background: radial-gradient(circle at 0% 0%, #ff4a4a, #b30033);
+  color: #fff;
+  font-size: 14px;
+  font-weight: 600;
+  letter-spacing: 0.03em;
+  text-decoration: none;
+  box-shadow: 0 10px 25px rgba(0, 0, 0, 0.7);
+  transition: transform 0.15s ease, box-shadow 0.15s ease,
+              background 0.15s ease;
+  white-space: nowrap;
+}
+
+.nav-cta:hover {
+  transform: translateY(-1px);
+  box-shadow: 0 14px 35px rgba(0, 0, 0, 0.85);
+}
+
+/* hamburger – skrytý na desktop */
+.menu-toggle {
+  display: none;
+  position: relative;
+  width: 34px;
+  height: 28px;
+  border: none;
+  background: none;
+  cursor: pointer;
+  padding: 0;
+}
+
+.menu-toggle span {
+  position: absolute;
+  left: 0;
+  right: 0;
+  height: 2px;
+  border-radius: 999px;
+  background: #ffffff;
+  transition: transform 0.25s ease, opacity 0.2s ease, top 0.25s ease;
+}
+
+.menu-toggle span:nth-child(1) { top: 4px; }
+.menu-toggle span:nth-child(2) { top: 13px; }
+.menu-toggle span:nth-child(3) { top: 22px; }
+
+/* stav, keď je menu otvorené – krížik */
+.nav-open .menu-toggle span:nth-child(1) {
+  top: 13px;
+  transform: rotate(45deg);
+}
+.nav-open .menu-toggle span:nth-child(2) {
+  opacity: 0;
+}
+.nav-open .menu-toggle span:nth-child(3) {
+  top: 13px;
+  transform: rotate(-45deg);
+}
+
+/* ===== MAIN CONTENT SECTION (HERO) ===== */
+.content-section {
+  display: flex;
+  justify-content: space-between;
+  align-items: stretch;
+  padding: 60px 10%;
+  gap: 40px;
+}
+
+/* špeciálne nastavenie pre úvodnú hero sekciu */
+.hero-section {
+  max-width: 1200px;
+  margin: 10px auto 0 10px;
+}
+
+/* text je dominantnejší: cca 60–65 % šírky */
+.hero-section .text-box {
+  flex: 0 0 100%;
+  color: rgb(255, 255, 255);
+  padding: 32px 36px;
+  border-radius: 34px;
+}
+
+/* silnejší nadpis */
+.hero-section .text-box h2 {
+  color: rgb(255, 255, 255);
+  font-size: 32px;
+  margin-bottom: 18px;
+}
+
+/* lepšia čitateľnosť textu */
+.hero-section .text-box p {
+  font-size: 28px;
+  line-height: 1.3;
+  margin: 0 0 10px;
+}
+
+/* obrázok je menší: cca 35–40 % šírky */
+.hero-section .hero-image {
+  flex: 0 0 38%;
+  max-width: 38%;
+  overflow: hidden;
+  border-radius: 24px;
+  box-shadow: 0 18px 45px rgba(0, 0, 0, 0.7);
+}
+
+/* samotný obrázok – mierny zoom efekt, ale menší */
+.hero-section .hero-image img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transition: transform 0.7s ease;
+}
+
+.hero-section .hero-image img:hover {
+  transform: scale(1.04);
+}
+
+
+/* GALLERY */
+.gallery {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 30px;
+  padding: 80px 10%;
+  justify-items: center;
+}
+
+.center-item {
+  grid-column: 2 / 3;
+}
+
+.gallery-item {
+  text-align: center;
+  overflow: hidden;
+  border-radius: 15px;
+  box-shadow: 0 0 15px rgba(0, 0, 0, 0.5);
+  cursor: pointer;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+  background-color: rgba(0, 0, 0, 0.5);
+  padding-bottom: 15px;
+  width: 100%;
+  border: none;
+  outline: none;
+}
+
+.gallery-item:hover {
+  transform: scale(1.03);
+  box-shadow: 0 0 25px rgba(255, 255, 255, 0.05);
+}
+
+.gallery-item:focus {
+  outline: none;
+}
+
+.gallery-item h3 {
+  color: white;
+  margin: 10px 0;
+  font-size: 20px;
+}
+
+.gallery-item img {
+  width: 100%;
+  height: 250px;
+  object-fit: cover;
+  border-radius: 10px;
+  transition: transform 0.25s ease;
+}
+
+
+.gallery-item p {
+  color: white;
+  font-size: 18px;
+  font-weight: bold;
+  margin-top: 10px;
+}
+
+
+.footer-inner {
+  margin-top: 40px;
+  padding: 20px 0;
+  background-color: rgba(0, 0, 0, 0.6);
+  text-align: center;
+  font-size: 14px;
+  color: #ccc;
+}
+/* OVERLAY – VŽDY V STREDE OBRAZOVKY */
+.overlay {
+  position: fixed;
+  inset: 0;
+  background-color: var(--overlay-bg);
+  display: none;          /* skryté default */
+  z-index: 1000;
+  padding: 20px;
+  overflow: auto;         /* ak je obsah vyšší, scrolluje overlay */
+}
+
+.overlay.show {
+  display: block;
+}
+
+/* vnútorný box, ktorý je centrovaný podľa viewportu */
+.overlay-inner {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%); /* centrovanie podľa obrazovky */
+  width: min(1600px, 96%);
+  max-height: 90vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  gap: 12px;
+  padding: 0;
+  background: none;  /* žiadne biele/sivé pozadie */
+  box-shadow: none;
+  border-radius: 8px;
+  overflow: auto;    /* vnútorný scroll, ak je obsah vysoký */
+}
+
+/* obrázok v overlay */
+.overlay-inner img {
+  width: 100%;
+  max-width: 800px;
+  height: auto;
+  border-radius: 12px;
+  border: none;
+  outline: none;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.6);
+}
+
+/* text pod obrázkom */
+#overlay-text {
+  margin: 0;
+  font-weight: bold;
+  padding: 8px 10px;
+  font-size: 36px;
+  line-height: 1.6;
+  color: #fff;
+  background: none;
+  box-shadow: none;
+}
+
+/* zatváracie X – v rohu obrazovky */
+.close-btn {
+  position: fixed;
+  top: 18px;
+  right: 24px;
+  font-size: 40px;
+  color: white;
+  z-index: 1100;
+  cursor: pointer;
+  background: none;
+  border: none;
+  padding: 4px;
+}
+
+.close-btn:hover {
+  color: var(--accent);
+}
+
+/* RESPONSIVE */
+@media (max-width: 1200px) {
+  .content-section {
+    padding: 40px 5%;
+    gap: 20px;
+  }
+
+  .gallery {
+    gap: 20px;
+  }
+}
+
+@media (max-width: 900px) {
+  .content-section {
+    flex-direction: column;
+    text-align: center;
+    padding: 40px 6%;
+  }
+
+  .text-box,
+  .image-box {
+    width: 100%;
+  }
+
+  .gallery {
+    grid-template-columns: repeat(2, 1fr);
+    padding: 60px 5%;
+  }
+
+  .gallery-item img {
+    height: 200px;
+  }
+
+  .center-item {
+    grid-column: 1 / -1;
+    justify-self: center;
+  }
+}
+
+@media (max-width: 600px) {
+
+  /* ----- základné odsadenia ----- */
+  body {
+    font-size: 15px;
+  }
+
+  main,
+  section {
+    padding-left: 5vw;
+    padding-right: 5vw;
+  }
+
+  /* ----- HEADER + HAMBURGER ----- */
+  .header-inner {
+    padding: 8px 12px;
+    gap: 12px;
+  }
+
+  .brand-text {
+    display: flex;
+    flex-direction: column;
+  }
+
+  .brand-title {
+    font-size: 16px;
+  }
+
+  .brand-subtitle {
+    font-size: 11px;
+  }
+
+  /* hlavné menu schované, kým nie je .nav-open */
+  .main-nav {
+    position: absolute;
+    top: 100%;
+    left: 0;
+    right: 0;
+    padding: 10px 14px 14px;
+    background: rgba(0, 0, 0, 0.96);
+    border-bottom: 1px solid rgba(255, 255, 255, 0.15);
+    transform-origin: top;
+    transform: scaleY(0.8);
+    opacity: 0;
+    pointer-events: none;
+    transition: opacity 0.2s ease, transform 0.2s ease;
+  }
+
+  .main-nav ul {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+    list-style: none;
+    margin: 0;
+    padding: 0;
+  }
+
+  .nav-link {
+    display: inline-block;
+    padding: 6px 0;
+    font-size: 15px;
+  }
+
+  /* CTA tlačidlo radšej skryjeme / presunieme nižšie na stránke */
+  .nav-cta {
+    display: none;
+  }
+
+  /* hamburger viditeľný na mobile */
+  .menu-toggle {
+    display: inline-block;
+    position: relative;
+    width: 32px;
+    height: 26px;
+    border: none;
+    background: none;
+    cursor: pointer;
+    padding: 0;
+  }
+
+  .menu-toggle span {
+    position: absolute;
+    left: 0;
+    right: 0;
+    height: 2px;
+    border-radius: 999px;
+    background: #ffffff;
+    transition: transform 0.25s ease, opacity 0.2s ease, top 0.25s ease;
+  }
+
+  .menu-toggle span:nth-child(1) { top: 4px; }
+  .menu-toggle span:nth-child(2) { top: 12px; }
+  .menu-toggle span:nth-child(3) { top: 20px; }
+
+  /* keď pridáš .nav-open na .site-header v JS – menu sa otvorí */
+  .site-header.nav-open .main-nav {
+    opacity: 1;
+    transform: scaleY(1);
+    pointer-events: auto;
+  }
+
+  /* hamburger -> X */
+  .site-header.nav-open .menu-toggle span:nth-child(1) {
+    top: 12px;
+    transform: rotate(45deg);
+  }
+  .site-header.nav-open .menu-toggle span:nth-child(2) {
+    opacity: 0;
+  }
+  .site-header.nav-open .menu-toggle span:nth-child(3) {
+    top: 12px;
+    transform: rotate(-45deg);
+  }
+
+  /* ----- HERO SEKCIA ----- */
+  .content-section,
+  .hero-section {
+    flex-direction: column;
+    align-items: stretch;
+    padding: 24px 5vw;
+    gap: 18px;
+  }
+
+  .hero-section .hero-image {
+    order: -1;          /* obrázok hore, text pod ním; zmaž, ak chceš opačne */
+    flex: 0 0 auto;
+    max-width: 100%;
+    border-radius: 18px;
+  }
+
+  .hero-section .hero-image img {
+    width: 100%;
+    height: auto;
+    object-fit: cover;
+  }
+
+  .hero-section .text-box {
+    padding: 18px 14px;
+    border-radius: 18px;
+  }
+
+  .hero-section .text-box h2 {
+    font-size: 22px;
+    margin-bottom: 10px;
+  }
+
+  .hero-section .text-box p {
+    font-size: 15px;
+    line-height: 1.6;
+  }
+
+  /* ----- GALÉRIA ----- */
+  .gallery {
+    display: grid;
+    grid-template-columns: 1fr; /* jeden stĺpec */
+    gap: 18px;
+    padding: 28px 7vw 40px;
+  }
+
+  .gallery-item {
+    width: 100%;
+    border-radius: 16px;
+    padding-bottom: 12px;
+  }
+
+  .gallery-item img {
+    height: 190px;
+    border-radius: 12px;
+  }
+
+  .gallery-item h3 {
+    font-size: 18px;
+    margin-top: 8px;
+  }
+
+  .gallery-item p {
+    font-size: 15px;
+  }
+
+  /* ----- OVERLAY (po kliknutí na fotku) ----- */
+  .overlay-inner {
+    width: 92vw;
+    max-height: 88vh;
+    border-radius: 14px;
+  }
+
+  .overlay-inner img {
+    max-height: 55vh;
+    border-radius: 12px;
+  }
+
+  #overlay-text {
+    font-size: 14px;
+    padding: 10px 8px 12px;
+  }
+
+  .close-btn {
+    top: 10px;
+    right: 14px;
+    font-size: 30px;
+  }
+}
+
+/* default – hamburger skrytý na väčších */
+.menu-toggle {
+  display: none;
+}
+
+
+
+
